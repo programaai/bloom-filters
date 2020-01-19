@@ -30,6 +30,10 @@ export class BloomFilter {
     return this._allItems.size
   }
 
+  public get errorRate(): number {
+    return this._errorRate;
+  }
+
   public get items(): string[] {
     return Array.from(this._allItems).sort();
   }

@@ -1,6 +1,7 @@
 import {
   Box,
   Card,
+  CardActions,
   CardContent,
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -52,6 +53,10 @@ export default function BloomFilterView(props: PropTypes) {
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </CardContent>
+      <CardActions>
+        Capacidade: <strong>{filter.capacity}</strong>, Taxa de erro:{' '}
+        <strong>{(filter.errorRate * 100).toFixed(1)}%</strong>
+      </CardActions>
     </Card>
   );
 }

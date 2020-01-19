@@ -67,7 +67,7 @@ export default function BloomFilterSearch({ filter }: PropTypes) {
             <Typography variant="h6" component="p">
               Resultado da busca:
             </Typography>
-            <em>{lastSearchValue}</em> {label}
+            <em>"{lastSearchValue}"</em> {label}
           </Box>
         )}
       </CardContent>

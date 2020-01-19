@@ -15,8 +15,10 @@ export default function BloomFilterInput({ onAdd }: PropTypes) {
   const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault();
     event.stopPropagation();
-    onAdd(value);
-    setValue('');
+    if (value && value.length) {
+      onAdd(value);
+      setValue('');
+    }
   };
 
   return (
@@ -36,7 +38,13 @@ export default function BloomFilterInput({ onAdd }: PropTypes) {
                 onChange={handleValueChanged}
               />
             </Box>
-            <Button color="primary" type="submit" variant="contained" endIcon={<FastForward />}>
+            <Button
+              color="primary"
+              type="submit"
+              variant="contained"
+              disabled={!value || value.length === 0}
+              endIcon={<FastForward />}
+            >
               Adicionar
             </Button>
           </Box>
