@@ -19,10 +19,16 @@ import React from 'react';
 
 interface PropTypes {
   filter: BloomFilter;
+  search: string;
 }
 
 export default function BloomFilterView(props: PropTypes) {
-  const { filter } = props;
+  const { filter, search } = props;
+
+  let searchFilter = null;
+  if (search !== '') {
+    searchFilter = new BloomFilter(filter.capacity, filter.errorRate, new Set([search]));
+  }
 
   return (
     <Card>
@@ -30,9 +36,17 @@ export default function BloomFilterView(props: PropTypes) {
         <Typography variant="h5" component="h2" gutterBottom>
           Bloom filter
         </Typography>
-        <Box mb={3}>
+        <Box mb={searchFilter === null ? 3 : 0}>
           <BloomFilterBlock filter={filter.filter} />
         </Box>
+        {searchFilter !== null && (
+          <Box mb={3}>
+            <BloomFilterBlock filter={searchFilter.filter} variant="secondary" />
+            <Typography variant="caption" component="span" gutterBottom>
+              Hashes do valor pesquisado
+            </Typography>
+          </Box>
+        )}
         <ExpansionPanel disabled={filter.items.length === 0}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography variant="h6" component="h4">

@@ -6,12 +6,13 @@ import { Search } from '@material-ui/icons';
 
 interface PropTypes {
   filter: BloomFilter;
+  value: string;
+  onChange: (arg0: string) => any;
 }
 
-export default function BloomFilterSearch({ filter }: PropTypes) {
+export default function BloomFilterSearch({ filter, value: lastSearchValue, onChange: setLastSearchValue }: PropTypes) {
   const [result, setResult] = useState<null | boolean>(null);
   const [value, setValue] = useState('');
-  const [lastSearchValue, setLastSearchValue] = useState('');
 
   const handleValueChanged = (event: ChangeEvent<HTMLInputElement>) => {
     if (value !== event.target.value) {
