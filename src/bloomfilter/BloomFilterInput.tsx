@@ -5,9 +5,10 @@ import { FastForward } from '@material-ui/icons';
 
 interface PropTypes {
   onAdd: (element: string) => void;
+  disabled?: boolean;
 }
 
-export default function BloomFilterInput({ onAdd }: PropTypes) {
+export default function BloomFilterInput({ onAdd, disabled = false }: PropTypes) {
   const [value, setValue] = useState('');
   const handleValueChanged = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -15,7 +16,7 @@ export default function BloomFilterInput({ onAdd }: PropTypes) {
   const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault();
     event.stopPropagation();
-    if (value && value.length) {
+    if (!disabled && value && value.length) {
       onAdd(value);
       setValue('');
     }
@@ -42,7 +43,7 @@ export default function BloomFilterInput({ onAdd }: PropTypes) {
               color="primary"
               type="submit"
               variant="contained"
-              disabled={!value || value.length === 0}
+              disabled={disabled || !value || value.length === 0}
               endIcon={<FastForward />}
             >
               Adicionar

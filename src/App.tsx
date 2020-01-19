@@ -53,7 +53,7 @@ const App: React.FC = () => {
         <Container fixed>
           <Grid container spacing={3}>
             <Grid item xs={4}>
-              <BloomFilterInput onAdd={addElement} />
+              <BloomFilterInput onAdd={addElement} disabled={bloomFilter.capacity === bloomFilter.length} />
               <Box mt={3}>
                 <BloomFilterSearch filter={bloomFilter} value={searchValue} onChange={setSearchValue} />
               </Box>
