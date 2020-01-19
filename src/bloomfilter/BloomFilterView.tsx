@@ -54,7 +54,7 @@ export default function BloomFilterView(props: PropTypes) {
         </ExpansionPanel>
       </CardContent>
       <CardActions>
-        Capacidade: <strong>{filter.capacity}</strong>, Taxa de erro:{' '}
+        Capacidade: <strong>{filter.capacity}</strong>, Chance de falso positivo:{' '}
         <strong>{(filter.errorRate * 100).toFixed(1)}%</strong>
       </CardActions>
     </Card>

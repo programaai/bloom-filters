@@ -15,28 +15,27 @@ import Header from './Header';
 // m = the number of bits for the filter
 // k = the number of hash functions
 
-// k = ?
-// m = ?
-// p = 0.01
-// n = 10
+// function getBitArraySize(n: number, p: number): number {
+//   return (-n * Math.log(p)) / Math.pow(Math.LN2, 2);
+// }
 
-function getBitArraySize(n: number, p: number): number {
-  return (-n * Math.log(p)) / Math.pow(Math.LN2, 2);
-}
+// function getHashFunctionCount(m: number, n: number): number {
+//   return (m / n) * Math.LN2;
+// }
 
-function getHashFunctionCount(m: number, n: number): number {
-  return (m / n) * Math.LN2;
-}
+// const n = 10;
+// const p = 0.2;
+// const m = getBitArraySize(n, p);
+// const k = getHashFunctionCount(m, n);
 
-const n = 10;
-const p = 0.2;
-const m = getBitArraySize(n, p);
-const k = getHashFunctionCount(m, n);
+const initialState = (() => {
+  const words = ['python', 'javascript', 'java', 'c#', 'swift', 'rust', 'kotlin'];
 
-console.log('[HASH] n=%d, m=%d, k=%d', n, m, k);
+  return words.reduce((filter, word) => filter.add(word), new BloomFilter(10, 0.1));
+})();
 
 const App: React.FC = () => {
-  const [bloomFilter, setFilter] = useState(new BloomFilter(10, 0.1));
+  const [bloomFilter, setFilter] = useState(initialState);
 
   const addElement = (element: string) => {
     setFilter(bloomFilter.add(element));
